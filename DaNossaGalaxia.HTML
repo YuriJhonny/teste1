@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meu Amor Infinito</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      overflow: hidden;
+      font-family: 'Arial', sans-serif;
+      position: relative;
+      background-color: #fff0f0;
+    }
+
+    .slideshow-container {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 2s ease-in-out;
+    }
+
+    .slide.active {
+      opacity: 1;
+    }
+
+    .fixed-hearts {
+      position: fixed;
+      bottom: 10px;
+      left: 0;
+      right: 0;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      z-index: 10;
+      padding: 10px;
+      flex-wrap: wrap;
+    }
+
+    .heart-button {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      font-size: 30px;
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Slides de fundo -->
+  <div class="slideshow-container">
+    <div class="slide" style="background-image: url('img1.jpg');"></div>
+    <div class="slide" style="background-image: url('img2.jpg');"></div>
+    <div class="slide" style="background-image: url('img3.jpg');"></div>
+    <div class="slide" style="background-image: url('img4.jpg');"></div>
+  </div>
+
+  <!-- Corações fixos -->
+  <div class="fixed-hearts" id="heartContainer"></div>
+
+  <!-- JavaScript -->
+  <script>
+    const frases = [
+      "Eu te amo assim como Van Gogh amava as estrelas e o amarelo.",
+      "Te amo assim como Tesla amava a eletricidade e o universo.",
+      "Te amo assim como o sol ama a lua e a noite.",
+      "Te amo assim como o mar ama a areia e as ondas.",
+      "Te amo assim como Adão amava Eva e o paraíso.",
+      "Te amo assim como o amor ama a vida e a eternidade.",
+      "Te amo assim como a música ama a melodia e a harmonia.",
+      "Te amo assim como a poesia ama as palavras e os sentimentos.",
+      "Eu te amo assim como o universo é infinito, misterioso, lindo e harmonioso."
+    ];
+
+    const heartContainer = document.getElementById('heartContainer');
+
+    frases.forEach((frase, index) => {
+      const btn = document.createElement('button');
+      btn.className = 'heart-button';
+      btn.innerHTML = '❤️';
+      btn.onclick = () => alert(frase);
+      heartContainer.appendChild(btn);
+    });
+
+    // Slides
+    let slideIndex = 0;
+    const slides = document.querySelectorAll('.slide');
+
+    function showSlides() {
+      slides.forEach(slide => slide.classList.remove('active'));
+      slideIndex = (slideIndex + 1) % slides.length;
+      slides[slideIndex].classList.add('active');
+    }
+
+    slides[0].classList.add('active');
+    setInterval(showSlides, 5000);
+  </script>
+</body>
+</html>
